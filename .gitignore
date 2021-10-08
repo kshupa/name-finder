@@ -2,3 +2,4 @@
 .python-version
 .pytest_cache
 test/__pycache__
+__pycache__
