@@ -1,7 +1,8 @@
 class NerModelTestDouble:
-    '''
+    """
     Test double for spaCy NLP model
-    '''
+    """
+
     def __init__(self, model):
         self.model = model
 
@@ -11,9 +12,11 @@ class NerModelTestDouble:
     def __call__(self, sent):
         return DocTestDouble(sent, self.ents)
 
+
 class DocTestDouble:
-    '''
+    """
     Test double for spaCy Doc
-    '''
+    """
+
     def __init__(self, sent, ents):
-        self.ents = [SpanTestDouble(ent['text'])]
+        self.ents = [SpanTestDouble(ent["text"])]
