@@ -23,3 +23,15 @@ class TestNerClient(unittest.TestCase):
         ner = NamedEntityClient(model)
         ents = ner.get_ents("Autin is the capitol of Texas")
         self.assertIsInstance(ents, dict)
+
+    def test_get_ents_given_spacy_PERSON_is_returned_serializes_to_Person(self):
+        model = NerModelTestDouble("eng")
+        doc_ents = [{"text": "Bob Marley", "label_": "PERSON"}]
+        model.returns_doc_ents(doc_ents)
+        ner = NamedEntityClient(model)
+        result = ner.get_ents("...")
+        expected_result = {
+            "ents": [{"ent": "Bob Marley", "label": "Person"}],
+            "html": "",
+        }
+        self.assertListEqual(result["ents"], expected_result["ents"])
